@@ -1,0 +1,40 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    height: 90vh;
+}
+
+.grid-item {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.grid-item table {
+    height: 800px;
+    width: 600px;
+}
+
+.table-bordered {
+    border: 2px solid black;
+    
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+thead {
+    height: 50px;
+}
+
+tbody th {
+    width: 25%;
+}
+
+tbody tr {
+    cursor: pointer;
+}
