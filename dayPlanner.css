@@ -53,11 +53,13 @@ tbody tr {
 }
 
 .settingBoxContent {
+    text-align: center;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    border-radius: 2em;
+    width: 25%;
 }
 
 #close {
@@ -73,4 +75,8 @@ tbody tr {
     font-size: 30px;
     text-decoration: none;
     cursor: pointer;
+}
+
+#todoArea {
+    font-size: 18px;
 }
