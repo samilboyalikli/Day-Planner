@@ -14,9 +14,18 @@ for (var i = 1; i <= 15; i++) {
             if (element.style.display === "none" || element.style.display === "") {
                 element.style.display = "block";
             } else {element.style.display = "none";}
+            if (activeFuncNum !== null && activeFuncNum !== undefined) {
+                let deleteButton = "SİL"
+                let addButon = "EKLE";
+                let td = "td" + activeFuncNum;
+                var tdText = document.getElementById(td)
+                todoText.value = tdText.textContent;
+                addTodo.textContent = tdText.textContent ? deleteButton : addButon;
+            }
         };
     })(i);
 }
+
 
 addTodo.addEventListener("click", function() {
     if (activeFuncNum !== null) {
@@ -24,74 +33,20 @@ addTodo.addEventListener("click", function() {
         var todoItself = todoText.value;
         var tdText = document.getElementById(td)
         tdText.innerText = todoItself
-        console.log(todoItself);
         todoText.value = ""
+        element.style.display = "none";
     } else {console.log("No active function");}
 });
-
 
 close.addEventListener("click", function() {element.style.display = "none";});
 
 
+/* 
+// Yanlış kullanım
+let deleteButtonText = addTodo.textContent; // Bu bir string olur
+deleteButtonText.textContent = "SİL"; // Hata verir, çünkü stringlerin textContent özelliği yoktur
 
-/*
-var element = document.getElementById("settingBox")
-var addTodo = document.getElementById("addTodo")
-var close = document.getElementById("close")
-var todoText = document.getElementById("todoArea")
-
-
-close.addEventListener("click", function() {element.style.display = "none"})
-
-var funcGroup = {}
-var func = "func"
-for (var i = 1; i <= 15; i++) {
-    funcGroup[func + i] = (function(num){
-        return function() {
-            if (element.style.display === "none" || element.style.display === "") 
-                {element.style.display = "block";
-                addTodo.addEventListener("click", function() {
-                    var td = "td" + num
-                    console.log(td)
-                });
-            } else {element.style.display = "none"}
-        }})(i)
-}
-*/
-
-/*
-BURADA BİR PROBLEM YOK
-var funcGroup = {}
-var func = "func"
-for (var i = 1; i <= 15; i++) {
-    funcGroup[func + i] = (function(num){
-        return function() {
-            if (element.style.display === "none" || element.style.display === "") 
-                {element.style.display = "block";
-                addTodo.addEventListener("click", function() {
-                    var td = "td" + num
-                    console.log(td)
-                });
-            }
-            else {element.style.display = "none"}
-        }})(i)
-}
-
----- AMA EĞER TD'DEN SONRA NUM DEĞİL DE İ KULLANIRSAK İ'NİN DEĞERİ 16 OLUYOR
-
-var funcGroup = {}
-var func = "func"
-for (var i = 1; i <= 15; i++) {
-    funcGroup[func + i] = (function(num){
-        return function() {
-            if (element.style.display === "none" || element.style.display === "") 
-                {element.style.display = "block";
-                addTodo.addEventListener("click", function() {
-                    var td = "td" + i
-                    console.log(td)
-                });
-            }
-            else {element.style.display = "none"}
-        }})(i)
-}
+// Doğru kullanım
+let deleteButton = addTodo; // Bu bir DOM öğesi olur
+deleteButton.textContent = "SİL"; // Bu çalışır, çünkü deleteButton bir DOM öğesidir
 */
