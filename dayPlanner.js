@@ -59,6 +59,12 @@ function toggleButton() {
     document.body.classList.toggle("body-dark");
 }
 
+document.getElementById("darkMode-icon").addEventListener("click", function() {
+    let currentRotation = this.style.transform.match(/rotate\((\d+)deg\)/);
+    let newRotation = currentRotation ? (parseInt(currentRotation[1]) + 180) %360 : 180;
+    this.style.transform = `rotate(${newRotation}deg)`;
+})
+
 /* 
 // Yanlış kullanım
 let deleteButtonText = addTodo.textContent; // Bu bir string olur
