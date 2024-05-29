@@ -1,9 +1,22 @@
-body {
+.body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: 1fr;
     place-items: center;
     height: 90vh;
+    color: black;
+    background-color: white;
+    transition: 300ms all;
+}
+
+.body-dark {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    place-items: center;
+    height: 90vh;
+    color: white;
+    background-color: rgb(73, 73, 73);
 }
 
 .grid-item {
@@ -16,15 +29,11 @@ body {
     width: 600px;
 }
 
-.table-bordered {
-    border: 2px solid black;
-    
-}
-
-.table-bordered th,
-.table-bordered td {
-    border: 1px solid black;
+#table-bordered th,
+#table-bordered td {
+    border: 1px solid;
     text-align: center;
+    height: 2em;
 }
 
 thead {
