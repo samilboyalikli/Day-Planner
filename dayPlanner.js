@@ -1,7 +1,7 @@
-var element = document.getElementById("settingBox");
-var addTodo = document.getElementById("addTodo");
-var todoText = document.getElementById("todoArea");
-var close = document.getElementById("close");
+var element = document.getElementById("settingBox"); // div target what i call it "kutucuk"
+var addTodo = document.getElementById("addTodo"); // EKLE-SİL button for some adding or removing stuff
+var todoArea = document.getElementById("todoArea"); // the input, what we write todos in it
+var close = document.getElementById("close"); // the id for opening/closing the kutucuk
 
 var funcGroup = {};
 var func = "func";
@@ -19,7 +19,7 @@ for (var i = 1; i <= 49; i++) {
                 let addButon = "EKLE";
                 let td = "td" + activeFuncNum;
                 var tdText = document.getElementById(td)
-                todoText.value = tdText.textContent;
+                todoArea.value = tdText.textContent;
                 addTodo.textContent = tdText.textContent ? deleteButton : addButon;
                 const colorButton = document.getElementById("colorButton");
                 const colorPicker = document.getElementById("colorPicker");
@@ -28,6 +28,19 @@ for (var i = 1; i <= 49; i++) {
                     let _tr_ = "tr" + activeFuncNum;
                     let tr = document.getElementById(_tr_)
                     tr.style.backgroundColor = colorPicker.value;
+//----------------------------------------------------------------------------------------------------
+//TODO - we must put a button for adding color. because, this block possible to make tired the machine
+                    if (localStorage.getItem(`bgcolor-tr${activeFuncNum}`)) {
+                        let bgColor = JSON.parse(localStorage.getItem(`bgcolor-tr${activeFuncNum}`))
+                        if (bgColor === colorPicker.value) return;
+                        bgColor.push(colorPicker.value)
+                        console.log("bgColor pushed")
+                    } else {
+                        let bgColorForLoc = []
+                        bgColorForLoc.push(colorPicker.value)
+                        localStorage.setItem(`bgcolor-tr${activeFuncNum}`, JSON.stringify(bgColorForLoc))
+                        console.log("bgColor created")
+                    }
                 });
             }
         };
@@ -37,16 +50,21 @@ for (var i = 1; i <= 49; i++) {
 
 addTodo.addEventListener("click", function() {
     if (activeFuncNum !== null) {
-        let todoItself = todoText.value;
+        let todoItself = todoArea.value;
         if (addTodo.textContent === "SİL") {
             addTodo.addEventListener("click", function() {
-                todoText.value = "";
+                todoArea.value = "";
                 addTodo.textContent = "EKLE";
             })
         } else {
             let td = "td" + activeFuncNum;
             var tdText = document.getElementById(td)
             tdText.innerText = todoItself
+            if (localStorage.getItem(`text-td${activeFuncNum}`)) {
+                console.log("text exist")
+            }
+//TODO - here where we'll write datas to localStorage
+//---------------------------------------------------
             element.style.display = "none";
         }
     } else {console.log("No active function");}
