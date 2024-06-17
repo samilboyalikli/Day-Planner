@@ -7,6 +7,13 @@ var funcGroup = {};
 var func = "func";
 var activeFuncNum = null;
 
+/*
+for (var i = 1; 1 <= 49; i++) {
+    let activeFuncNumber = number;
+
+}
+*/
+
 for (var i = 1; i <= 49; i++) {
     funcGroup[func + i] = (function(num) {
         return function() {
@@ -15,6 +22,11 @@ for (var i = 1; i <= 49; i++) {
                 element.style.display = "block";
             } else {element.style.display = "none";}
             if (activeFuncNum !== null && activeFuncNum !== undefined) {
+                var data = "td" + activeFuncNum;
+                var tdText = document.getElementById(data)
+                console.log(data)
+                var localText = localStorage.getItem(`text-td${activeFuncNum}`)
+                tdText.innerText = localText
                 let deleteButton = "SİL"
                 let addButon = "EKLE";
                 let td = "td" + activeFuncNum;
@@ -36,6 +48,7 @@ for (var i = 1; i <= 49; i++) {
                         bgColor.push(colorPicker.value)
                         console.log("bgColor pushed")
                     } else {
+                        // this base different from other
                         let bgColorForLoc = []
                         bgColorForLoc.push(colorPicker.value)
                         localStorage.setItem(`bgcolor-tr${activeFuncNum}`, JSON.stringify(bgColorForLoc))
@@ -63,8 +76,11 @@ addTodo.addEventListener("click", function() {
             if (localStorage.getItem(`text-td${activeFuncNum}`)) {
                 console.log("text exist")
             }
-//TODO - here where we'll write datas to localStorage
-//---------------------------------------------------
+            else {
+                // this base different from other
+                localStorage.setItem(`text-td${activeFuncNum}`, JSON.stringify(todoItself))
+                console.log("tesnim kezban boyalıklı")
+            }
             element.style.display = "none";
         }
     } else {console.log("No active function");}
