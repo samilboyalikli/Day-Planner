@@ -6,19 +6,15 @@ var close = document.getElementById("close"); // the id for opening/closing the 
 var funcGroup = {};
 var func = "func";
 var activeFuncNum = null;
-var activeFuncNumber = null;
 
-
-for (var i = 1; 1 <= 49; i++) {
-    i = function(i) {
-        return function() {
-            let activeFuncNumber = i;
-            if (localStorage.getItem(`text-td${activeFuncNumber}`)) {console.log("text exist")}
-            else {console.log("ananı sikeyim")}
-        }
+for (var i = 1; i <= 49; i++) {
+    if (localStorage.getItem(`text-td${i}`)) {
+        var oldText_ = localStorage.getItem(`text-td${i}`)
+        var tdData = "td" + i;
+        var oldText = document.getElementById(tdData)
+        oldText.innerText = JSON.parse(oldText_);
     }
 }
-
 
 for (var i = 1; i <= 49; i++) {
     funcGroup[func + i] = (function(num) {
@@ -85,7 +81,6 @@ addTodo.addEventListener("click", function() {
             else {
                 // this base different from other
                 localStorage.setItem(`text-td${activeFuncNum}`, JSON.stringify(todoItself))
-                console.log("tesnim kezban boyalıklı")
             }
             element.style.display = "none";
         }
