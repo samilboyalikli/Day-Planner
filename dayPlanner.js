@@ -6,13 +6,19 @@ var close = document.getElementById("close"); // the id for opening/closing the 
 var funcGroup = {};
 var func = "func";
 var activeFuncNum = null;
+var activeFuncNumber = null;
 
-/*
+
 for (var i = 1; 1 <= 49; i++) {
-    let activeFuncNumber = number;
-
+    i = function(i) {
+        return function() {
+            let activeFuncNumber = i;
+            if (localStorage.getItem(`text-td${activeFuncNumber}`)) {console.log("text exist")}
+            else {console.log("ananı sikeyim")}
+        }
+    }
 }
-*/
+
 
 for (var i = 1; i <= 49; i++) {
     funcGroup[func + i] = (function(num) {
