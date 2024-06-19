@@ -25,6 +25,16 @@
     text-align: center;
 }
 
+.second-grid-item {
+    position: fixed;
+    top: 40%;
+    left: 15%;
+}
+
+.secondDiv {
+    margin-top: 25px;
+}
+
 .grid-item table {
     height: 800px;
     width: 600px;
@@ -95,5 +105,13 @@ tbody tr {
     transition: 300ms all;
     height: 50px;
     width: 50px;
+    cursor: pointer;
+}
+
+
+#resetBtn-icon {
+    transition: 300ms all;
+    height: 55px;
+    width: 55px;
     cursor: pointer;
 }

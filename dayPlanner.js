@@ -9,10 +9,12 @@ var activeFuncNum = null;
 
 for (var i = 1; i <= 49; i++) {
     if (localStorage.getItem(`text-td${i}`)) {
-        var oldText_ = localStorage.getItem(`text-td${i}`)
-        var tdData = "td" + i;
-        var oldText = document.getElementById(tdData)
-        oldText.innerText = JSON.parse(oldText_);
+        var oldText = document.getElementById("td" + i)
+        oldText.innerText = JSON.parse(localStorage.getItem(`text-td${i}`));
+    }
+    if (localStorage.getItem(`bgcolor-tr${i}`)) {
+        let tr = document.getElementById("tr" + i)
+        tr.style.backgroundColor = JSON.parse(localStorage.getItem(`bgcolor-tr${i}`));
     }
 }
 
@@ -24,26 +26,22 @@ for (var i = 1; i <= 49; i++) {
                 element.style.display = "block";
             } else {element.style.display = "none";}
             if (activeFuncNum !== null && activeFuncNum !== undefined) {
-                var data = "td" + activeFuncNum;
-                var tdText = document.getElementById(data)
-                console.log(data)
-                var localText = localStorage.getItem(`text-td${activeFuncNum}`)
-                tdText.innerText = localText
+                var tdText = document.getElementById("td" + activeFuncNum)
+                tdText.innerText = JSON.parse(localStorage.getItem(`text-td${activeFuncNum}`))
                 let deleteButton = "SİL"
                 let addButon = "EKLE";
-                let td = "td" + activeFuncNum;
-                var tdText = document.getElementById(td)
+                var tdText = document.getElementById("td" + activeFuncNum)
                 todoArea.value = tdText.textContent;
                 addTodo.textContent = tdText.textContent ? deleteButton : addButon;
                 const colorButton = document.getElementById("colorButton");
                 const colorPicker = document.getElementById("colorPicker");
                 colorButton.addEventListener("click", function() {colorPicker.click();})
                 colorPicker.addEventListener("input", function() {
-                    let _tr_ = "tr" + activeFuncNum;
-                    let tr = document.getElementById(_tr_)
+                    let tr = document.getElementById("tr" + activeFuncNum)
                     tr.style.backgroundColor = colorPicker.value;
 //----------------------------------------------------------------------------------------------------
 //TODO - we must put a button for adding color. because, this block possible to make tired the machine
+//TODO - we must update this block for bg local settings, bg cannot updating when we reupload page
                     if (localStorage.getItem(`bgcolor-tr${activeFuncNum}`)) {
                         let bgColor = JSON.parse(localStorage.getItem(`bgcolor-tr${activeFuncNum}`))
                         if (bgColor === colorPicker.value) return;
@@ -72,8 +70,7 @@ addTodo.addEventListener("click", function() {
                 addTodo.textContent = "EKLE";
             })
         } else {
-            let td = "td" + activeFuncNum;
-            var tdText = document.getElementById(td)
+            var tdText = document.getElementById("td" + activeFuncNum)
             tdText.innerText = todoItself
             if (localStorage.getItem(`text-td${activeFuncNum}`)) {
                 console.log("text exist")
@@ -99,6 +96,14 @@ document.getElementById("darkMode-icon").addEventListener("click", function() {
     let newRotation = currentRotation ? (parseInt(currentRotation[1]) + 180) %360 : 180;
     this.style.transform = `rotate(${newRotation}deg)`;
 })
+
+function toggleReset() {
+    for (var i = 1; i <= 49; i++) {
+        localStorage.removeItem(`text-td${i}`);
+        localStorage.removeItem(`bgcolor-tr${i}`);
+    }
+    location.reload();
+}
 
 /* 
 // Yanlış kullanım
