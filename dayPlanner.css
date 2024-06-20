@@ -35,6 +35,11 @@
     margin-top: 25px;
 }
 
+.thirdDiv {
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
 .grid-item table {
     height: 800px;
     width: 600px;
@@ -113,5 +118,12 @@ tbody tr {
     transition: 300ms all;
     height: 55px;
     width: 55px;
+    cursor: pointer;
+}
+
+#downloadBtn-icon {
+    transition: 300ms all;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
 }
